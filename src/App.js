@@ -53,6 +53,9 @@ const UserProvider = ({ children }) => {
   //
   //                            -- https://reactjs.org/docs/hooks-reference.html#usereducer
   //
+  // if you wanted to manage something other than an object here.. you could just use useState and insert the value
+  // ie if we were managing a counter variable like a number or some other data primitive....
+  // ```const [count, setCount] = useState(0)```
   const [userState, setUserState] = useReducer(userReducer, initialUserState);
   const providerValue = { userState, setUserState };
 
@@ -62,6 +65,11 @@ const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
+
+// NOTE!!! to follow single responsibility coding principles
+// we can categorize different types of state in their own providers
+// for example.. if you had another part of your app that managed pokemon you'd throw that in a pokemon provider
+// and wrap all the components that are interested in that state at the lowest spot node that connects them all together
 
 function App() {
   return (
