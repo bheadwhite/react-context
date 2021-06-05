@@ -75,6 +75,7 @@ function App() {
   return (
     <div className='App'>
       <UserProvider>
+        <Header />
         <UserProfile />
         <IsUserLoggedIn />
       </UserProvider>
@@ -89,6 +90,7 @@ function UserProfile() {
   return (
     <div>
       <div>{JSON.stringify(userState, undefined, 2)}</div>
+      <br />
       <ManageUser />
     </div>
   );
@@ -113,11 +115,13 @@ function ManageUser() {
           type='text'
           name='USERNAME'
           placeholder='Name'
+          value={userState.username}
           onChange={handleInputChange}
         />
         <input
           type='text'
           name='EMAIL'
+          value={userState.email}
           placeholder='Email'
           onChange={handleInputChange}
         />
@@ -140,6 +144,10 @@ const IsUserLoggedIn = () => {
   return (
     <span style={{ position: 'absolute', top: 0, right: 0 }}>WELCOME!!</span>
   );
+};
+
+const Header = () => {
+  return <h3>React Context</h3>;
 };
 
 export default App;
